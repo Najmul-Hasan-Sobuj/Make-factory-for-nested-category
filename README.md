@@ -3,15 +3,18 @@
 create factory acording this column
 
 ```
-Schema::create('sub_categories', function (Blueprint $table) {
-    $table->id();
-    $table->unsignedBigInteger('category_id');
-    $table->string('sub_category_name');
-    $table->string('sub_category_slug');
-    $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-    $table->timestamps();
-    $table->softDeletes();
-});
+public function up()
+    {
+        Schema::create('sub_categories', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('category_id');
+            $table->string('sub_category_name');
+            $table->string('sub_category_slug');
+            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+    }
 ```
 
 
